@@ -6,7 +6,7 @@ dotenv.config();
 exports.mongoDb = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL);
-    console.log("✅ Aanand Games MongoDb connection established");
+    console.log("✅ Aanand Sports MongoDb connection established");
   } catch (error) {
     if (error.code === "ECONNREFUSED" && error.syscall === "querySrv") {
       console.log("⚠️ SRV DNS failed; retrying with public DNS...");
@@ -14,7 +14,7 @@ exports.mongoDb = async () => {
       try {
         await mongoose.connect(process.env.MONGO_URL);
         console.log(
-          "✅ Aanand Games MongoDb connection established (fallback)",
+          "✅ Aanand Sports MongoDb connection established (fallback)",
         );
       } catch (fallbackError) {
         console.log("❌ Fallback also failed:", fallbackError?.message);

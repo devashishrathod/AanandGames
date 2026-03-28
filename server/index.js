@@ -17,9 +17,9 @@ app.use(fileUpload({ useTempFiles: true, tempFileDir: "/tmp/" }));
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use("/aanand-games/", allRoutes);
+app.use("/aanand-sports/", allRoutes);
 app.get("/", async (req, res) => {
-  res.send("Welcome to Aanand Games🚀");
+  res.send("Welcome to Aanand Sports🚀");
 });
 app.use((req, res, next) => {
   throwError(404, "Invalid API");
@@ -29,7 +29,7 @@ app.use(errorHandler);
 mongoDb();
 
 app.listen(port, async () => {
-  console.log(`✅ Aanand Games Server running on http://localhost:${port}`);
+  console.log(`✅ Aanand Sports Server running on http://localhost:${port}`);
   if (process.env.ENABLE_NGROK === "true") {
     const url = await ngrok.connect({
       addr: port,
