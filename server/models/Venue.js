@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
 const { DEFAULT_IMAGES } = require("../constants");
+const { locationField } = require("./validObjectId");
 
 const venueSchema = new mongoose.Schema(
   {
-    locationId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Location",
-      required: true,
-    },
+    locationId: { ...locationField, required: true },
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
     image: { type: String, default: DEFAULT_IMAGES.VENUE },
@@ -15,6 +12,11 @@ const venueSchema = new mongoose.Schema(
     isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true, versionKey: false },
+);
+
+venueSchema.index(
+  { locationId: 1, name: 1 },
+  { unique: true, partialFilterExpression: { isDeleted: false } },
 );
 
 module.exports = mongoose.model("Venue", venueSchema);
