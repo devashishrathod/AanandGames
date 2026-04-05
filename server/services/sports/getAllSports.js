@@ -1,4 +1,4 @@
-const Sport = require("../../models/Sports");
+const Sport = require("../../models/Sport");
 const { pagination } = require("../../utils");
 
 exports.getAllSports = async (query) => {

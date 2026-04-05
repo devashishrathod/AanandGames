@@ -6,7 +6,7 @@ const locationSchema = new mongoose.Schema(
   {
     userId: userField,
     name: { type: String },
-    shopOrBuildingNumber: { type: String },
+    buildingNumber: { type: String },
     address: { type: String },
     area: { type: String },
     city: { type: String },
@@ -25,7 +25,7 @@ const locationSchema = new mongoose.Schema(
       },
     },
     coordinates: { type: [Number], default: [0, 0] }, // [lat , lng]
-    isProductAddress: { type: Boolean, default: false },
+    isVenueAddress: { type: Boolean, default: false },
     isDefault: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },

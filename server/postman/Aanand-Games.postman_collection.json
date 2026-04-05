@@ -1585,7 +1585,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"coordinates\": [ // on priority required if not then fill all required details\r\n        14.46,\r\n        75.90\r\n    ],\r\n    \"userId\": \"6937219cf3f52c1e86504fc0\" // optional for user location\r\n    // \"name\": \"Main Shop\", // optional for user location name or product location name\r\n    // \"shopOrBuildingNumber\": \"12A\", // optional for user house no. OR product shop no.\r\n    // \"address\": \"Near Market Road\", // required if coordinates not provided\r\n    // \"city\": \"Davanagere\", // required if coordinates not provided\r\n    // \"district\": \"Davanagere\", // required if coordinates not provided\r\n    // \"zipcode\": \"577007\", // required if coordinates not provided\r\n    // \"state\": \"Karnataka\", // required if coordinates not provided\r\n    // \"area\": \"davanagere taluku\", // optional \r\n    // \"country\": \"India\" // optional \r\n}",
+              "raw": "{\r\n    \"coordinates\": [ // on priority required if not then fill all required details\r\n        14.46,\r\n        75.90\r\n    ],\r\n    \"userId\": \"6937219cf3f52c1e86504fc0\" // optional for user location\r\n    // \"name\": \"Main Shop\", // optional for user location name or product location name\r\n    // \"buildingNumber\": \"12A\", // optional for user house no. OR product shop no.\r\n    // \"address\": \"Near Market Road\", // required if coordinates not provided\r\n    // \"city\": \"Davanagere\", // required if coordinates not provided\r\n    // \"district\": \"Davanagere\", // required if coordinates not provided\r\n    // \"zipcode\": \"577007\", // required if coordinates not provided\r\n    // \"state\": \"Karnataka\", // required if coordinates not provided\r\n    // \"area\": \"davanagere taluku\", // optional \r\n    // \"country\": \"India\" // optional \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1641,7 +1641,7 @@
                   "disabled": true
                 },
                 {
-                  "key": "shopOrBuildingNumber",
+                  "key": "buildingNumber",
                   "value": "NUMBER",
                   "disabled": true
                 },

@@ -7,7 +7,7 @@ exports.createLocation = async (payload) => {
   let {
     userId,
     name,
-    shopOrBuildingNumber,
+    buildingNumber,
     address,
     area,
     state,
@@ -24,19 +24,19 @@ exports.createLocation = async (payload) => {
     if (!address || !city || !district || !zipcode || !state) {
       throwError(
         422,
-        "Please pass coordinates(Lat & Long) Or provide address, city, district, zipcode and state "
+        "Please pass coordinates(Lat & Long) Or provide address, city, district, zipcode and state ",
       );
     }
     if (zipcode && !isValidZipCode(country, zipcode)) {
       throwError(
         422,
-        `${zipcode} is not a valid ZIP/postal code for ${country}`
+        `${zipcode} is not a valid ZIP/postal code for ${country}`,
       );
     }
     locationData = {
       userId,
       name: name?.toLowerCase(),
-      shopOrBuildingNumber: shopOrBuildingNumber?.toLowerCase(),
+      buildingNumber: buildingNumber?.toLowerCase(),
       address: address?.toLowerCase(),
       area: area?.toLowerCase(),
       city: city?.toLowerCase(),

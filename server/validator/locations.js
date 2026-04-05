@@ -7,7 +7,7 @@ exports.validateCreateLocation = (data) => {
       "any.invalid": "Invalid userId format",
     }),
     name: Joi.string().min(2).max(100).optional(),
-    shopOrBuildingNumber: Joi.string().allow("").optional(),
+    buildingNumber: Joi.string().allow("").optional(),
     area: Joi.string().allow("").optional(),
     address: Joi.string().allow(""),
     city: Joi.string().allow(""),
@@ -15,6 +15,7 @@ exports.validateCreateLocation = (data) => {
     state: Joi.string().allow(""),
     zipcode: Joi.string(),
     country: Joi.string().min(2).max(80).optional(),
+    isVenueAddress: Joi.boolean().optional(),
     coordinates: Joi.array()
       .items(Joi.number())
       .length(2)
@@ -59,7 +60,7 @@ exports.validateGetAllLocationsQuery = (payload) => {
     limit: Joi.number().integer().min(1).optional(),
     search: Joi.string().optional(),
     name: Joi.string().optional(),
-    shopOrBuildingNumber: Joi.string().optional(),
+    buildingNumber: Joi.string().optional(),
     userId: objectId().optional().messages({
       "any.invalid": "Invalid userId format",
     }),
@@ -70,6 +71,9 @@ exports.validateGetAllLocationsQuery = (payload) => {
     state: Joi.string().optional(),
     zipcode: Joi.string().optional(),
     country: Joi.string().optional(),
+    isVenueAddress: Joi.alternatives()
+      .try(Joi.string(), Joi.boolean())
+      .optional(),
     isActive: Joi.alternatives().try(Joi.string(), Joi.boolean()).optional(),
     fromDate: Joi.date().iso().optional(),
     toDate: Joi.date().iso().optional(),

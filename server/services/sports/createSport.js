@@ -1,4 +1,4 @@
-const Sport = require("../../models/Sports");
+const Sport = require("../../models/Sport");
 const { throwError } = require("../../utils");
 const { uploadImage } = require("../uploads");
 

@@ -8,7 +8,7 @@ exports.getAllLocations = async (query) => {
     limit,
     search,
     name,
-    shopOrBuildingNumber,
+    buildingNumber,
     userId,
     address,
     area,
@@ -18,6 +18,7 @@ exports.getAllLocations = async (query) => {
     zipcode,
     country,
     isActive,
+    isVenueAddress,
     fromDate,
     toDate,
     sortBy = "createdAt",
@@ -28,6 +29,9 @@ exports.getAllLocations = async (query) => {
   const match = { isDeleted: false };
   if (typeof isActive !== "undefined") {
     match.isActive = isActive === "true" || isActive === true;
+  }
+  if (typeof isVenueAddress !== "undefined") {
+    match.isVenueAddress = isVenueAddress === "true" || isVenueAddress === true;
   }
   if (city) match.city = city?.toLowerCase();
   if (district) match.district = district?.toLowerCase();
@@ -41,15 +45,15 @@ exports.getAllLocations = async (query) => {
   if (name) match.name = { $regex: new RegExp(name, "i") };
   if (address) match.address = { $regex: new RegExp(address, "i") };
   if (area) match.area = { $regex: new RegExp(area, "i") };
-  if (shopOrBuildingNumber) {
-    match.shopOrBuildingNumber = {
-      $regex: new RegExp(shopOrBuildingNumber, "i"),
+  if (buildingNumber) {
+    match.buildingNumber = {
+      $regex: new RegExp(buildingNumber, "i"),
     };
   }
   if (search) {
     match.$or = [
       { name: { $regex: new RegExp(search, "i") } },
-      { shopOrBuildingNumber: { $regex: new RegExp(search, "i") } },
+      { buildingNumber: { $regex: new RegExp(search, "i") } },
       { address: { $regex: new RegExp(search, "i") } },
       { area: { $regex: new RegExp(search, "i") } },
       { city: { $regex: new RegExp(search, "i") } },
