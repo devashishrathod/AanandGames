@@ -1,0 +1,168 @@
+{
+  "info": {
+    "_postman_id": "b4e0f4ad-1b31-4c5f-9ab4-0d6d2b9a7a10",
+    "name": "Aanand-Sports - SportGrounds",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create SportGround",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "venueId", "value": "", "type": "text" },
+            { "key": "sportId", "value": "", "type": "text" },
+            { "key": "categoryId", "value": "", "type": "text" },
+            { "key": "name", "value": "Cricket Ground 1", "type": "text" },
+            { "key": "description", "value": "", "type": "text" },
+            { "key": "coach", "value": "", "type": "text" },
+            { "key": "openingTime", "value": "", "type": "text" },
+            { "key": "closingTime", "value": "", "type": "text" },
+            { "key": "level", "value": "", "type": "text" },
+            { "key": "sportDurationInHours", "value": "2", "type": "text" },
+            {
+              "key": "sportDate",
+              "value": "2026-04-08 05:00 AM",
+              "type": "text"
+            },
+            { "key": "maxPlayers", "value": "22", "type": "text" },
+            { "key": "minPlayers", "value": "1", "type": "text" },
+            { "key": "maxTeams", "value": "2", "type": "text" },
+            { "key": "minTeams", "value": "1", "type": "text" },
+            { "key": "isPrivate", "value": "false", "type": "text" },
+            { "key": "isAvailable", "value": "true", "type": "text" },
+            { "key": "isActive", "value": "true", "type": "text" },
+            { "key": "features", "value": "[]", "type": "text" },
+            { "key": "image", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/sportGrounds/create",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "sportGrounds", "create"]
+        }
+      }
+    },
+    {
+      "name": "Get All SportGrounds",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/sportGrounds/getAll?page=1&limit=10&sportDate=2026-04-08&fromSportDate=2026-04-08&toSportDate=2026-04-10&sportTime=5%20AM&fromSportTime=5%20AM&toSportTime=5%20PM",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "sportGrounds", "getAll"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" },
+            { "key": "sportDate", "value": "2026-04-08" },
+            { "key": "fromSportDate", "value": "2026-04-08" },
+            { "key": "toSportDate", "value": "2026-04-10" },
+            { "key": "sportTime", "value": "5 AM" },
+            { "key": "fromSportTime", "value": "5 AM" },
+            { "key": "toSportTime", "value": "5 PM" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get SportGround By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/sportGrounds/get/{{sportGroundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "sportGrounds", "get", "{{sportGroundId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update SportGround",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Cricket Ground 1", "type": "text" },
+            { "key": "description", "value": "", "type": "text" },
+            {
+              "key": "sportDate",
+              "value": "2026-04-08 05:00 AM",
+              "type": "text"
+            },
+            { "key": "sportTiming", "value": "6 PM", "type": "text" },
+            { "key": "isActive", "value": "true", "type": "text" },
+            { "key": "image", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/sportGrounds/update/{{sportGroundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": [
+            "aanand-sports",
+            "sportGrounds",
+            "update",
+            "{{sportGroundId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete SportGround",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/sportGrounds/delete/{{sportGroundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": [
+            "aanand-sports",
+            "sportGrounds",
+            "delete",
+            "{{sportGroundId}}"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "Aanand-baseUrl", "value": "http://localhost:8080" },
+    { "key": "Aanand-adminToken", "value": "" },
+    { "key": "sportGroundId", "value": "" }
+  ]
+}

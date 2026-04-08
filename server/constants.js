@@ -19,6 +19,14 @@ module.exports = {
     IOS: "ios",
   }),
 
+  SPORT_GROUND_LEVELS: Object.freeze({
+    BEGINNER: "beginner",
+    INTERMEDIATE: "intermediate",
+    ADVANCED: "advanced",
+    OPEN_GAME: "open_game",
+    NULL: "null",
+  }),
+
   SUBSCRIPTION_TYPES: Object.freeze({
     WEEKLY: "weekly",
     MONTHLY: "monthly",
@@ -112,6 +120,8 @@ module.exports = {
     SPORT:
       "https://res.cloudinary.com/drvdnqydw/image/upload/f_auto,q_auto/v1/Images/zsbowllown6ddeb4jnw0?_a=BAMAK+Jw0",
     VENUE:
+      "https://res.cloudinary.com/drvdnqydw/image/upload/f_auto,q_auto/v1/Images/zsbowllown6ddeb4jnw0?_a=BAMAK+Jw0",
+    SPORT_GROUND:
       "https://res.cloudinary.com/drvdnqydw/image/upload/f_auto,q_auto/v1/Images/zsbowllown6ddeb4jnw0?_a=BAMAK+Jw0",
   }),
 };
