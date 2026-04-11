@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { DEFAULT_IMAGES } = require("../constants");
 
-const bannerSchema = new mongoose.Schema(
+const courtSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
@@ -10,12 +9,16 @@ const bannerSchema = new mongoose.Schema(
       ref: "Ground",
       required: true,
     },
-    image: { type: String, default: DEFAULT_IMAGES.BANNER },
-    video: { type: String },
+    pricePerHour: { type: Number },
+    status: {
+      type: String,
+      enum: ["available", "booked", "maintenance"],
+      default: "available",
+    },
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true, versionKey: false },
 );
 
-module.exports = mongoose.model("Banner", bannerSchema);
+module.exports = mongoose.model("Court", courtSchema);

@@ -1,0 +1,142 @@
+{
+  "info": {
+    "_postman_id": "2a2b2e02-9d5f-4a66-8c3b-64f2f0ab2a8a",
+    "name": "Aanand-Sports - Grounds",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Ground",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "venueId", "value": "", "type": "text" },
+            { "key": "sportId", "value": "", "type": "text" },
+            { "key": "name", "value": "Ground 1", "type": "text" },
+            { "key": "description", "value": "", "type": "text" },
+            { "key": "type", "value": "cricket", "type": "text" },
+            { "key": "openingTime", "value": "06:00 AM", "type": "text" },
+            { "key": "closingTime", "value": "11:00 PM", "type": "text" },
+            { "key": "pricePerHour", "value": "1000", "type": "text" },
+            { "key": "status", "value": "available", "type": "text" },
+            { "key": "isActive", "value": "true", "type": "text" },
+            { "key": "banners", "type": "file", "src": "" },
+            { "key": "banners", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/grounds/create",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "grounds", "create"]
+        }
+      }
+    },
+    {
+      "name": "Get All Grounds",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/grounds/getAll?page=1&limit=10&search=ground&venueId=&sportId=&status=available",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "grounds", "getAll"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" },
+            { "key": "search", "value": "ground" },
+            { "key": "status", "value": "available" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Ground By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/grounds/get/{{groundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "grounds", "get", "{{groundId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Ground (Add Banners)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Ground 1", "type": "text" },
+            { "key": "description", "value": "", "type": "text" },
+            { "key": "type", "value": "cricket", "type": "text" },
+            { "key": "openingTime", "value": "06:00 AM", "type": "text" },
+            { "key": "closingTime", "value": "11:00 PM", "type": "text" },
+            { "key": "pricePerHour", "value": "1000", "type": "text" },
+            { "key": "status", "value": "available", "type": "text" },
+            { "key": "isActive", "value": "true", "type": "text" },
+            { "key": "banners", "type": "file", "src": "" },
+            { "key": "banners", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/grounds/update/{{groundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "grounds", "update", "{{groundId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Ground",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/grounds/delete/{{groundId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "grounds", "delete", "{{groundId}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "Aanand-baseUrl", "value": "http://localhost:8080" },
+    { "key": "Aanand-adminToken", "value": "" },
+    { "key": "groundId", "value": "" }
+  ]
+}

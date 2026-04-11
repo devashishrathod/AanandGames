@@ -1,0 +1,120 @@
+{
+  "info": {
+    "_postman_id": "93e4c4cc-4a0a-4f6d-a3f1-8b79fdd2f6e1",
+    "name": "Aanand-Sports - Courts",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Court",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"groundId\": \"{{groundId}}\",\n  \"name\": \"Court 1\",\n  \"description\": \"\",\n  \"pricePerHour\": 500,\n  \"status\": \"available\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courts/create",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courts", "create"]
+        }
+      }
+    },
+    {
+      "name": "Get All Courts",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courts/getAll?page=1&limit=10&groundId={{groundId}}&search=court&status=available",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courts", "getAll"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" },
+            { "key": "groundId", "value": "{{groundId}}" },
+            { "key": "search", "value": "court" },
+            { "key": "status", "value": "available" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Court By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courts/get/{{courtId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courts", "get", "{{courtId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Court",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Court 1\",\n  \"description\": \"\",\n  \"pricePerHour\": 700,\n  \"status\": \"available\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courts/update/{{courtId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courts", "update", "{{courtId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Court",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courts/delete/{{courtId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courts", "delete", "{{courtId}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "Aanand-baseUrl", "value": "http://localhost:8080" },
+    { "key": "Aanand-adminToken", "value": "" },
+    { "key": "groundId", "value": "" },
+    { "key": "courtId", "value": "" }
+  ]
+}

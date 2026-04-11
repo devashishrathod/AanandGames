@@ -5,7 +5,7 @@ const { throwError, validateObjectId } = require("../../utils");
 const { ROLES } = require("../../constants");
 
 exports.updateBooking = async (id, payload = 0, authUserId) => {
-  const user = await User.findById(tokenUserId);
+  const user = await User.findById(authUserId);
   if (!user) throwError(404, "User not found");
 
   validateObjectId(id, "Booking Id");
