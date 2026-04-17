@@ -10,10 +10,10 @@ const {
   deleteVenue,
 } = require("../controllers/venues");
 
-router.post("/create", isAdmin, create);
+router.post("/create", verifyJwtToken, create);
 router.get("/getAll", verifyJwtToken, getAll);
 router.get("/get/:id", verifyJwtToken, get);
-router.put("/update/:id", isAdmin, update);
-router.delete("/delete/:id", isAdmin, deleteVenue);
+router.put("/update/:id", verifyJwtToken, update);
+router.delete("/delete/:id", verifyJwtToken, deleteVenue);
 
 module.exports = router;

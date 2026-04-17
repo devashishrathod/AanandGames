@@ -1,4 +1,5 @@
 const Ground = require("../../models/Ground");
+const Academy = require("../../models/Academy");
 const Venue = require("../../models/Venue");
 const Sport = require("../../models/Sport");
 const Banner = require("../../models/Banner");
@@ -23,7 +24,12 @@ exports.createGround = async (payload, bannersFiles) => {
     pricePerHour,
     status,
     isActive,
+    academyId,
   } = payload;
+
+  validateObjectId(academyId, "Academy Id");
+  const academy = await Academy.findById(academyId);
+  if (!academy || academy.isDeleted) throwError(404, "Academy not found!");
 
   validateObjectId(venueId, "Venue Id");
   const venue = await Venue.findById(venueId);
@@ -37,6 +43,7 @@ exports.createGround = async (payload, bannersFiles) => {
   description = description?.toLowerCase();
 
   const existing = await Ground.findOne({
+    academyId,
     venueId,
     sportId,
     name,
@@ -47,6 +54,7 @@ exports.createGround = async (payload, bannersFiles) => {
   const ground = await Ground.create({
     name,
     description,
+    academyId,
     venueId,
     sportId,
     type: type?.toLowerCase(),
@@ -80,6 +88,7 @@ exports.createGround = async (payload, bannersFiles) => {
   return await Ground.findById(ground._id)
     .populate({ path: "venueId", select: "name description image" })
     .populate({ path: "sportId", select: "name description image" })
+    .populate({ path: "academyId", select: "name description image" })
     .populate({
       path: "banners",
       select: "name description image video isActive",

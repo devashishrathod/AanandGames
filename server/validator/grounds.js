@@ -5,6 +5,10 @@ exports.validateCreateGround = (payload) => {
   const createSchema = Joi.object({
     name: Joi.string().min(2).max(120).required(),
     description: Joi.string().allow("").max(500).optional(),
+    academyId: objectId().required().messages({
+      "any.required": "academyId is required",
+      "any.invalid": "Invalid academyId format",
+    }),
     venueId: objectId().required().messages({
       "any.required": "venueId is required",
       "any.invalid": "Invalid venueId format",
@@ -51,6 +55,9 @@ exports.validateGetAllGroundsQuery = (payload) => {
     limit: Joi.number().integer().min(1).optional(),
     search: Joi.string().optional(),
     name: Joi.string().optional(),
+    academyId: objectId().optional().messages({
+      "any.invalid": "Invalid academyId format",
+    }),
     venueId: objectId().optional().messages({
       "any.invalid": "Invalid venueId format",
     }),

@@ -10,6 +10,7 @@ exports.getSportGround = async (id) => {
   validateObjectId(id, "SportGround Id");
   const sportGround = await SportGround.findById(id)
     .select("-isDeleted")
+    .populate({ path: "academyId", select: "name description image" })
     .populate({ path: "venueId", select: "name description image" })
     .populate({ path: "sportId", select: "name description image" })
     .populate({ path: "categoryId", select: "name description image" });

@@ -12,6 +12,10 @@ const featureSchema = Joi.object({
 
 exports.validateCreateSportGround = (data) => {
   const createSchema = Joi.object({
+    academyId: objectId().required().messages({
+      "any.required": "academyId is required",
+      "any.invalid": "Invalid academyId format",
+    }),
     venueId: objectId().required().messages({
       "any.required": "venueId is required",
       "any.invalid": "Invalid venueId format",
@@ -108,6 +112,9 @@ exports.validateGetAllSportGroundsQuery = (payload) => {
     level: Joi.string().optional(),
     openingTime: Joi.string().optional(),
     closingTime: Joi.string().optional(),
+    academyId: objectId().optional().messages({
+      "any.invalid": "Invalid academyId format",
+    }),
     venueId: objectId().optional().messages({
       "any.invalid": "Invalid venueId format",
     }),

@@ -1,9 +1,22 @@
 const User = require("../../models/User");
+const Academy = require("../../models/Academy");
 const { ROLES, LOGIN_TYPES } = require("../../constants");
 const { asyncWrapper, sendSuccess, throwError } = require("../../utils");
 
 exports.register = asyncWrapper(async (req, res) => {
-  let { name, email, password, mobile, role, loginType, fcmToken } = req.body;
+  let {
+    name,
+    email,
+    password,
+    mobile,
+    role,
+    loginType,
+    fcmToken,
+    academyName,
+    description,
+    openingTime,
+    closingTime,
+  } = req.body;
   if (!mobile && !email) {
     throwError(422, "Email or Mobile number any one of this is required");
   }
@@ -32,6 +45,26 @@ exports.register = asyncWrapper(async (req, res) => {
     isOnline: true,
   };
   user = await User.create(userData);
+  let message = "User registered successfully";
+  let academy = {};
+  if (role === ROLES.ACADEMY_MANAGER) {
+    academy = await Academy.create({
+      ownerId: user._id,
+      name: academyName,
+      description,
+      email,
+      mobile,
+      openingTime,
+      closingTime,
+    });
+    user.academyId = academy._id;
+    await user.save();
+    message = "Academy registered successfully";
+  }
   const token = user.getSignedJwtToken();
-  return sendSuccess(res, 201, "User registered successfully", { user, token });
+  return sendSuccess(res, 201, message, {
+    user,
+    academy,
+    token,
+  });
 });

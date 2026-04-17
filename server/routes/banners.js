@@ -10,10 +10,10 @@ const {
   deleteBanner,
 } = require("../controllers/banners");
 
-router.post("/create", isAdmin, create);
+router.post("/create", verifyJwtToken, create);
 router.get("/getAll", verifyJwtToken, getAll);
 router.get("/get/:id", verifyJwtToken, get);
 // router.put("/update/:id", isAdmin, update);
-router.delete("/delete/:id", isAdmin, deleteBanner);
+router.delete("/delete/:id", verifyJwtToken, deleteBanner);
 
 module.exports = router;

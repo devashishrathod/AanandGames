@@ -7,6 +7,7 @@ exports.getGround = async (id) => {
   const ground = await Ground.findById(id)
     .populate({ path: "venueId", select: "name description image" })
     .populate({ path: "sportId", select: "name description image" })
+    .populate({ path: "academyId", select: "name description image" })
     .populate({
       path: "banners",
       select: "name description image video isActive",

@@ -1,4 +1,5 @@
 const SportGround = require("../../models/SportGround");
+const Academy = require("../../models/Academy");
 const Venue = require("../../models/Venue");
 const Sport = require("../../models/Sport");
 const Category = require("../../models/Category");
@@ -14,6 +15,7 @@ const { uploadImage } = require("../uploads");
 
 exports.createSportGround = async (payload, image) => {
   let {
+    academyId,
     venueId,
     sportId,
     categoryId,
@@ -40,6 +42,10 @@ exports.createSportGround = async (payload, image) => {
   validateObjectId(venueId, "Venue Id");
   validateObjectId(sportId, "Sport Id");
   validateObjectId(categoryId, "Category Id");
+  validateObjectId(academyId, "Academy Id");
+
+  const academy = await Academy.findById(academyId);
+  if (!academy || academy.isDeleted) throwError(404, "Academy not found!");
 
   const venue = await Venue.findById(venueId);
   if (!venue || venue.isDeleted) throwError(404, "Venue not found!");
@@ -82,6 +88,7 @@ exports.createSportGround = async (payload, image) => {
 
   const created = await SportGround.create({
     venueId,
+    academyId,
     sportId,
     categoryId,
     name,
@@ -104,7 +111,6 @@ exports.createSportGround = async (payload, image) => {
     image: imageUrl,
     isActive,
   });
-
   const obj = created.toObject();
   obj.sportTimingDisplay = formatTimeForUi(obj.sportTiming);
   obj.sportDateDisplay = formatDateTimeForUi(obj.sportDate);

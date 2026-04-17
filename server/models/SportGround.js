@@ -3,6 +3,11 @@ const { DEFAULT_IMAGES, SPORT_GROUND_LEVELS } = require("../constants");
 
 const sportGroundSchema = new mongoose.Schema(
   {
+    academyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Academy",
+      required: true,
+    },
     venueId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Venue",

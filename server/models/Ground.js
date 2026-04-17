@@ -4,6 +4,11 @@ const groundSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
+    academyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Academy",
+      required: true,
+    },
     venueId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Venue",

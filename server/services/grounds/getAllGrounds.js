@@ -8,6 +8,7 @@ exports.getAllGrounds = async (query) => {
     limit,
     search,
     name,
+    academyId,
     venueId,
     sportId,
     type,
@@ -23,6 +24,11 @@ exports.getAllGrounds = async (query) => {
   limit = limit ? Number(limit) : 10;
 
   const match = { isDeleted: false };
+
+  if (academyId) {
+    validateObjectId(academyId, "Academy Id");
+    match.academyId = new mongoose.Types.ObjectId(academyId);
+  }
 
   if (venueId) {
     validateObjectId(venueId, "Venue Id");
@@ -69,6 +75,7 @@ exports.getAllGrounds = async (query) => {
       description: 1,
       venueId: 1,
       sportId: 1,
+      academyId: 1,
       banners: 1,
       type: 1,
       noOfCourts: 1,
@@ -92,6 +99,7 @@ exports.getAllGrounds = async (query) => {
   const populated = await Ground.find({ _id: { $in: ids } })
     .populate({ path: "venueId", select: "name description image" })
     .populate({ path: "sportId", select: "name description image" })
+    .populate({ path: "academyId", select: "name description image" })
     .populate({
       path: "banners",
       select: "name description image video isActive",

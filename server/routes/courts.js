@@ -10,10 +10,10 @@ const {
   deleteCourt,
 } = require("../controllers/courts");
 
-router.post("/create", isAdmin, create);
+router.post("/create", verifyJwtToken, create);
 router.get("/getAll", verifyJwtToken, getAll);
 router.get("/get/:id", verifyJwtToken, get);
-router.put("/update/:id", isAdmin, update);
-router.delete("/delete/:id", isAdmin, deleteCourt);
+router.put("/update/:id", verifyJwtToken, update);
+router.delete("/delete/:id", verifyJwtToken, deleteCourt);
 
 module.exports = router;

@@ -2,9 +2,9 @@ const User = require("../../models/User");
 const { throwError } = require("../../utils");
 
 exports.getUserById = async (userId) => {
-  const user = await User.findOne({ _id: userId, isDeleted: false }).select(
-    "-password -otp -isDeleted"
-  );
+  const user = await User.findOne({ _id: userId, isDeleted: false })
+    .populate("academyId")
+    .select("-password -otp -isDeleted");
   if (!user) throwError(404, "User not found");
   return user;
 };

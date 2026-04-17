@@ -20,6 +20,7 @@ exports.getAllSportGrounds = async (query) => {
     level,
     openingTime,
     closingTime,
+    academyId,
     venueId,
     sportId,
     categoryId,
@@ -49,6 +50,10 @@ exports.getAllSportGrounds = async (query) => {
 
   const match = { isDeleted: false };
 
+  if (academyId) {
+    validateObjectId(academyId, "Academy Id");
+    match.academyId = new mongoose.Types.ObjectId(academyId);
+  }
   if (venueId) {
     validateObjectId(venueId, "Venue Id");
     match.venueId = new mongoose.Types.ObjectId(venueId);
@@ -181,6 +186,7 @@ exports.getAllSportGrounds = async (query) => {
 
   pipeline.push({
     $project: {
+      academyId: 1,
       venueId: 1,
       sportId: 1,
       categoryId: 1,
@@ -215,6 +221,7 @@ exports.getAllSportGrounds = async (query) => {
   const result = await pagination(SportGround, pipeline, page, limit);
   // Populate after aggregation
   await SportGround.populate(result.data, [
+    { path: "academyId", select: "name description image" },
     { path: "venueId", select: "name description image" },
     { path: "sportId", select: "name description image" },
     { path: "categoryId", select: "name description image" },
