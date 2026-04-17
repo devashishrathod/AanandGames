@@ -9,12 +9,12 @@ exports.updateUserById = async (userId, payload, image) => {
   const user = await User.findById(userId);
   if (!user || user?.isDeleted) throwError(404, "User not found");
   let academy = {};
+  const isAcademyManager = user.role === ROLES.ACADEMY_MANAGER;
+  if (isAcademyManager) {
+    academy = await Academy.findById(user.academyId);
+    if (!academy || academy.isDeleted) throwError(404, "Academy not found");
+  }
   if (payload) {
-    const isAcademyManager = user.role === ROLES.ACADEMY_MANAGER;
-    if (isAcademyManager) {
-      academy = await Academy.findById(user.academyId);
-      if (!academy || academy.isDeleted) throwError(404, "Academy not found");
-    }
     let {
       name,
       email,
