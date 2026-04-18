@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "TimeSlots",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Time Slots",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/timeSlots/getAll?groundId={{groundId}}&sportId={{sportId}}&date={{date}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "timeSlots", "getAll"],
+          "query": [
+            { "key": "groundId", "value": "{{groundId}}" },
+            { "key": "sportId", "value": "{{sportId}}" },
+            { "key": "date", "value": "{{date}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Courts For Slot",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/timeSlots/getCourts?groundId={{groundId}}&sportId={{sportId}}&startTime={{startTime}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "timeSlots", "getCourts"],
+          "query": [
+            { "key": "groundId", "value": "{{groundId}}" },
+            { "key": "sportId", "value": "{{sportId}}" },
+            { "key": "startTime", "value": "{{startTime}}" }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "Aanand-baseUrl", "value": "http://localhost:8080" },
+    { "key": "Aanand-adminToken", "value": "" },
+    { "key": "groundId", "value": "" },
+    { "key": "sportId", "value": "" },
+    { "key": "date", "value": "2026-04-19" },
+    { "key": "startTime", "value": "2026-04-19T06:00:00.000Z" }
+  ]
+}

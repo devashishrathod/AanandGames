@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "CourtBookings",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Court Booking (multi-slot/cart)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"courtId\": \"{{courtId}}\",\n      \"startTime\": \"{{startTime}}\"\n    },\n    {\n      \"courtId\": \"{{courtId}}\",\n      \"startTime\": \"{{startTime2}}\"\n    }\n  ],\n  \"paymentStatus\": \"pending\",\n  \"paymentId\": \"\"\n}"
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courtBookings/create",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courtBookings", "create"]
+        }
+      }
+    },
+    {
+      "name": "Get All Court Bookings",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courtBookings/getAll?page=1&limit=10",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courtBookings", "getAll"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Court Booking By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courtBookings/get/{{courtBookingId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courtBookings", "get", "{{courtBookingId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Court Booking (status/payment)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"confirmed\",\n  \"paymentStatus\": \"paid\",\n  \"paymentId\": \"pay_123\"\n}"
+        },
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courtBookings/update/{{courtBookingId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courtBookings", "update", "{{courtBookingId}}"]
+        }
+      }
+    },
+    {
+      "name": "Cancel Court Booking",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Aanand-adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Aanand-baseUrl}}/aanand-sports/courtBookings/cancel/{{courtBookingId}}",
+          "host": ["{{Aanand-baseUrl}}"],
+          "path": ["aanand-sports", "courtBookings", "cancel", "{{courtBookingId}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "Aanand-baseUrl", "value": "http://localhost:8080" },
+    { "key": "Aanand-adminToken", "value": "" },
+    { "key": "courtId", "value": "" },
+    { "key": "courtBookingId", "value": "" },
+    { "key": "startTime", "value": "2026-04-19T06:00:00.000Z" },
+    { "key": "startTime2", "value": "2026-04-19T07:00:00.000Z" }
+  ]
+}
