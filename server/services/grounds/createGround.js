@@ -19,10 +19,10 @@ exports.createGround = async (payload, bannersFiles) => {
     venueId,
     sportId,
     sports,
-    type,
+    // type,
     openingTime,
     closingTime,
-    pricePerHour,
+    // pricePerHour,
     status,
     isActive,
     academyId,
@@ -32,9 +32,11 @@ exports.createGround = async (payload, bannersFiles) => {
   const academy = await Academy.findById(academyId);
   if (!academy || academy.isDeleted) throwError(404, "Academy not found!");
 
-  validateObjectId(venueId, "Venue Id");
-  const venue = await Venue.findById(venueId);
-  if (!venue || venue.isDeleted) throwError(404, "Venue not found!");
+  if (venueId) {
+    validateObjectId(venueId, "Venue Id");
+    const venue = await Venue.findById(venueId);
+    if (!venue || venue.isDeleted) throwError(404, "Venue not found!");
+  }
 
   const finalSports =
     Array.isArray(sports) && sports.length ? sports : sportId ? [sportId] : [];
@@ -49,13 +51,13 @@ exports.createGround = async (payload, bannersFiles) => {
   name = name?.toLowerCase();
   description = description?.toLowerCase();
 
-  const existing = await Ground.findOne({
-    academyId,
-    venueId,
-    name,
-    isDeleted: false,
-  });
-  if (existing) throwError(400, "Ground already exist with this name");
+  // const existing = await Ground.findOne({
+  //   academyId,
+  //   venueId,
+  //   name,
+  //   isDeleted: false,
+  // });
+  // if (existing) throwError(400, "Ground already exist with this name");
 
   const ground = await Ground.create({
     name,
@@ -67,10 +69,10 @@ exports.createGround = async (payload, bannersFiles) => {
       sportId: sId,
       noOfCourts: 0,
     })),
-    type: type?.toLowerCase(),
+    // type: type?.toLowerCase(),
     openingTime,
     closingTime,
-    pricePerHour,
+    // pricePerHour,
     status,
     isActive,
   });

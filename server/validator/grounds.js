@@ -9,8 +9,7 @@ exports.validateCreateGround = (payload) => {
       "any.required": "academyId is required",
       "any.invalid": "Invalid academyId format",
     }),
-    venueId: objectId().required().messages({
-      "any.required": "venueId is required",
+    venueId: objectId().optional().messages({
       "any.invalid": "Invalid venueId format",
     }),
     sportId: objectId().optional().messages({
@@ -24,10 +23,10 @@ exports.validateCreateGround = (payload) => {
       )
       .min(1)
       .optional(),
-    type: Joi.string().min(2).max(50).required(),
+    // type: Joi.string().min(2).max(50).required(),
     openingTime: Joi.string().required(),
     closingTime: Joi.string().required(),
-    pricePerHour: Joi.number().min(0).required(),
+    // pricePerHour: Joi.number().min(0).required(),
     status: Joi.string().valid("available", "booked", "maintenance").optional(),
     isActive: Joi.boolean().optional(),
   }).or("sportId", "sports");
@@ -53,10 +52,10 @@ exports.validateUpdateGround = (payload) => {
       )
       .min(1)
       .optional(),
-    type: Joi.string().min(2).max(50).optional(),
+    // type: Joi.string().min(2).max(50).optional(),
     openingTime: Joi.string().optional(),
     closingTime: Joi.string().optional(),
-    pricePerHour: Joi.number().min(0).optional(),
+    // pricePerHour: Joi.number().min(0).optional(),
     status: Joi.string().valid("available", "booked", "maintenance").optional(),
     isActive: Joi.alternatives().try(Joi.string(), Joi.boolean()).optional(),
   });
@@ -79,7 +78,7 @@ exports.validateGetAllGroundsQuery = (payload) => {
     sportId: objectId().optional().messages({
       "any.invalid": "Invalid sportId format",
     }),
-    type: Joi.string().optional(),
+    // type: Joi.string().optional(),
     status: Joi.string().valid("available", "booked", "maintenance").optional(),
     isActive: Joi.alternatives().try(Joi.string(), Joi.boolean()).optional(),
     fromDate: Joi.date().iso().optional(),

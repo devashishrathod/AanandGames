@@ -12,7 +12,7 @@ const groundSchema = new mongoose.Schema(
     venueId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Venue",
-      required: true,
+      // required: true,
     },
     sports: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sport" }],
     sportsMeta: [
@@ -22,11 +22,11 @@ const groundSchema = new mongoose.Schema(
       },
     ],
     banners: [{ type: mongoose.Schema.Types.ObjectId, ref: "Banner" }],
-    type: { type: String, required: true, trim: true },
+    // type: { type: String, required: true, trim: true },
     noOfCourts: { type: Number, default: 0 },
     openingTime: { type: String, required: true, trim: true },
     closingTime: { type: String, required: true, trim: true },
-    pricePerHour: { type: Number, required: true },
+    // pricePerHour: { type: Number, required: true },
     status: {
       type: String,
       enum: ["available", "booked", "maintenance"],
