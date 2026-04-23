@@ -11,10 +11,10 @@ exports.updateCourtBooking = async (id, payload = 0, tokenUserId) => {
   const booking = await CourtBooking.findById(id);
   if (!booking) throwError(404, "Booking not found");
 
-  const isAdmin = user.role === ROLES.ADMIN;
-  if (!isAdmin) {
-    if (String(booking.userId) !== String(user._id)) throwError(403, "Forbidden");
-  }
+ // const isAdmin = user.role === ROLES.ADMIN;
+//  if (!isAdmin) {
+ //   if (String(booking.userId) !== String(user._id)) throwError(403, "Forbidden");
+ // }
 
   if (payload) {
     const { status, paymentStatus, paymentId } = payload;
