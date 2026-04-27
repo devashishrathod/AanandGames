@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
+const User = require("../../models/User");
 const Court = require("../../models/Court");
 const { pagination, validateObjectId } = require("../../utils");
+const { ROLES } = require("../../constants");
 
-exports.getAllCourts = async (query) => {
+exports.getAllCourts = async (userId, query) => {
   let {
     page,
     limit,
     search,
     name,
+    academyId,
     groundId,
     sportId,
     status,
@@ -22,6 +25,18 @@ exports.getAllCourts = async (query) => {
   limit = limit ? Number(limit) : 10;
 
   const match = { isDeleted: false };
+
+  const user = await User.findById(userId);
+  if (!user || user.isDeleted) {
+    throwError(404, "Unauthorized user! User not found");
+  }
+  const isAcademyManager = user?.role === ROLES.ACADEMY_MANAGER;
+  if (isAcademyManager) {
+    match.academyId = new mongoose.Types.ObjectId(user.academyId);
+  } else if (academyId) {
+    validateObjectId(academyId, "Academy Id");
+    match.academyId = new mongoose.Types.ObjectId(academyId);
+  }
 
   if (groundId) {
     validateObjectId(groundId, "Ground Id");

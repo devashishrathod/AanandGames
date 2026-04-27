@@ -4,6 +4,11 @@ const courtSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
+    academyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Academy",
+      required: true,
+    },
     groundId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Ground",

@@ -1,3 +1,4 @@
+const Academy = require("../../models/Academy");
 const Court = require("../../models/Court");
 const Ground = require("../../models/Ground");
 const Sport = require("../../models/Sport");
@@ -11,6 +12,9 @@ exports.createCourt = async (payload) => {
   validateObjectId(groundId, "Ground Id");
   const ground = await Ground.findById(groundId);
   if (!ground || ground.isDeleted) throwError(404, "Ground not found");
+
+  const academy = await Academy.findById(ground.academyId);
+  if (!academy || academy.isDeleted) throwError(404, "Academy not found");
 
   validateObjectId(sportId, "Sport Id");
   const sport = await Sport.findById(sportId);
@@ -37,6 +41,7 @@ exports.createCourt = async (payload) => {
   const created = await Court.create({
     name,
     description,
+    academyId: ground.academyId,
     groundId,
     sportId,
     pricePerHour,
