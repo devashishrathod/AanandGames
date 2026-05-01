@@ -35,6 +35,7 @@ exports.validateCreateSportGround = (data) => {
     description: Joi.string().allow("").max(300).messages({
       "string.max": "Description cannot exceed {#limit} characters",
     }),
+    price: Joi.number().min(0).required(),
     coach: Joi.string().allow("").max(120).optional(),
     openingTime: Joi.string().allow("").max(30).optional(),
     closingTime: Joi.string().allow("").max(30).optional(),
@@ -80,6 +81,7 @@ exports.validateUpdateSportGround = (payload) => {
     description: Joi.string().allow("").max(300).messages({
       "string.max": "Description cannot exceed {#limit} characters",
     }),
+    price: Joi.number().min(0).optional(),
     coach: Joi.string().allow("").max(120).optional(),
     openingTime: Joi.string().allow("").max(30).optional(),
     closingTime: Joi.string().allow("").max(30).optional(),
@@ -108,6 +110,7 @@ exports.validateGetAllSportGroundsQuery = (payload) => {
     search: Joi.string().optional(),
     name: Joi.string().optional(),
     description: Joi.string().optional(),
+    price: Joi.number().min(0).optional(),
     coach: Joi.string().optional(),
     level: Joi.string().optional(),
     openingTime: Joi.string().optional(),

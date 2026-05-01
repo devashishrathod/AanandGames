@@ -49,7 +49,7 @@ const sportGroundSchema = new mongoose.Schema(
         "Features must be an array of objects with title and description",
       ],
     },
-    // price: { type: Number },
+    price: { type: Number, required: true },
     // discount: { type: Number },
     // discountType: { type: String, enum: ["percentage", "fixed"] },
     isPrivate: { type: Boolean, default: false },

@@ -27,6 +27,7 @@ exports.updateSportGround = async (id, payload = 0, image) => {
       name,
       description,
       coach,
+      price,
       openingTime,
       closingTime,
       level,
@@ -99,6 +100,7 @@ exports.updateSportGround = async (id, payload = 0, image) => {
       sportGround.isFull = !sportGround.isFull;
     }
 
+    if (price !== undefined) sportGround.price = price;
     if (description) sportGround.description = description?.toLowerCase() || "";
     if (coach) sportGround.coach = coach?.toLowerCase() || "";
     if (openingTime) sportGround.openingTime = openingTime;

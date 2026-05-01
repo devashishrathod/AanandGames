@@ -10,8 +10,7 @@ exports.createBooking = async (tokenUserId, payload) => {
   if (!user || user.isDeleted) {
     throwError(404, "User not found");
   }
-  let { userId, sportGroundId, price, status, paymentStatus, paymentId } =
-    payload;
+  let { userId, sportGroundId } = payload;
 
   validateObjectId(sportGroundId, "SportGround Id");
   const sportGround = await SportGround.findById(sportGroundId);
@@ -60,10 +59,7 @@ exports.createBooking = async (tokenUserId, payload) => {
     sportGroundId,
     startTime,
     endTime,
-    price,
-    status,
-    paymentStatus,
-    paymentId,
+    price: sportGround.price || 0,
   });
 
   return await Booking.findById(created._id)

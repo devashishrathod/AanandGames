@@ -18,6 +18,7 @@ exports.getAllSportGrounds = async (userId, query) => {
     search,
     name,
     description,
+    price,
     coach,
     level,
     openingTime,
@@ -90,6 +91,7 @@ exports.getAllSportGrounds = async (userId, query) => {
     match.isFull = isFull === "true" || isFull === true;
   }
 
+  if (price !== undefined) match.price = Number(price);
   if (typeof maxPlayers !== "undefined") match.maxPlayers = Number(maxPlayers);
   if (typeof minPlayers !== "undefined") match.minPlayers = Number(minPlayers);
   if (typeof maxTeams !== "undefined") match.maxTeams = Number(maxTeams);
@@ -202,6 +204,7 @@ exports.getAllSportGrounds = async (userId, query) => {
       categoryId: 1,
       name: 1,
       description: 1,
+      price: 1,
       coach: 1,
       openingTime: 1,
       closingTime: 1,

@@ -10,10 +10,10 @@ exports.validateCreateBooking = (data) => {
       "any.required": "sportGroundId is required",
       "any.invalid": "Invalid sportGroundId format",
     }),
-    price: Joi.number().min(0).optional(),
-    status: Joi.string().valid("pending", "confirmed", "cancelled").optional(),
-    paymentStatus: Joi.string().valid("pending", "paid", "failed").optional(),
-    paymentId: Joi.string().allow("").optional(),
+    // price: Joi.number().min(0).optional(),
+    // status: Joi.string().valid("pending", "confirmed", "cancelled").optional(),
+    // paymentStatus: Joi.string().valid("pending", "paid", "failed").optional(),
+    // paymentId: Joi.string().allow("").optional(),
   });
   return createSchema.validate(data, { abortEarly: false });
 };
@@ -26,10 +26,10 @@ exports.validateUpdateBooking = (data) => {
     sportGroundId: objectId().optional().messages({
       "any.invalid": "Invalid sportGroundId format",
     }),
-    price: Joi.number().min(0).optional(),
-    status: Joi.string().valid("pending", "confirmed", "cancelled").optional(),
-    paymentStatus: Joi.string().valid("pending", "paid", "failed").optional(),
-    paymentId: Joi.string().allow("").optional(),
+    // price: Joi.number().min(0).optional(),
+    // status: Joi.string().valid("pending", "confirmed", "cancelled").optional(),
+    // paymentStatus: Joi.string().valid("pending", "paid", "failed").optional(),
+    // paymentId: Joi.string().allow("").optional(),
   });
   return updateSchema.validate(data, { abortEarly: false });
 };
